@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Beat The Game</string>
+    <string name="title_activity_game_data">GameData</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add_game">Add an Unfinished Game</string>
+
+    <string name="console_prompt">Select a console</string>
+
+    <string-array name="consoles_array">
+        <item>PC</item>
+        <item>PlayStation 3</item>
+        <item>PlayStation 4</item>
+        <item>PlayStation Portable</item>
+        <item>PlayStation Vita</item>
+        <item>Xbox 360</item>
+        <item>Xbox One</item>
+        <item>Nintendo Wii</item>
+        <item>Nintendo Wii U</item>
+        <item>Nintendo 3DS</item>
+    </string-array>
+</resources>

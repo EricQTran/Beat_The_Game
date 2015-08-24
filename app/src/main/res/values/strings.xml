@@ -6,7 +6,6 @@
     <string name="title_activity_add_game">Add an Unfinished Game</string>
 
     <string name="console_prompt">Select a console</string>
-
     <string-array name="consoles_array">
         <item>PC</item>
         <item>PlayStation 3</item>
@@ -19,4 +18,32 @@
         <item>Nintendo Wii U</item>
         <item>Nintendo 3DS</item>
     </string-array>
+
+    <string name="percentage_prompt">Percentage Completed</string>
+    <string-array name="percentage_array">
+        <item>0</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+    </string-array>
+    <string name="title_activity_navigation">Navigation</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+
+
 </resources>

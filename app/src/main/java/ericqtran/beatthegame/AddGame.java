@@ -1,6 +1,7 @@
 package ericqtran.beatthegame;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,11 +14,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class AddGame extends AppCompatActivity {
 
     Button addGameButt;
+    Button viewGameListButt;
     TextView gameTitleInput;
     Spinner consoleSpin;
     Spinner percentSpin;
@@ -33,6 +36,7 @@ public class AddGame extends AppCompatActivity {
 
         //initialize global variables
         addGameButt = (Button) findViewById(R.id.addGameButton);
+        viewGameListButt = (Button) findViewById(R.id.viewGamesListButton);
         gameTitleInput = (TextView) findViewById(R.id.gameBox);
         consoleSpin = (Spinner) findViewById(R.id.consoleSelection);
         percentSpin = (Spinner) findViewById(R.id.percentSpinner);
@@ -60,9 +64,26 @@ public class AddGame extends AppCompatActivity {
                 gameStack.push(addedGame);
                 message.show();
 
-
             }
         });
+    }
+
+    public void onGetNameClick(View view)
+    {
+        ArrayList<Game> theList = new ArrayList<>();
+
+        Context context = getApplicationContext();
+        Intent getNameScreenIntent = new Intent(context,GamesList.class);
+
+        while(!gameStack.empty()) {
+            Game gameToBePassed = gameStack.pop();
+            theList.add(gameToBePassed);
+        }
+        Bundle info = new Bundle();
+        info.putSerializable("theGameList", theList);
+        getNameScreenIntent.putExtras(info);
+        startActivity(getNameScreenIntent);
+
     }
 
     @Override

@@ -7,7 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobileconnectors.cognito.CognitoSyncManager;
+import com.amazonaws.mobileconnectors.cognito.Dataset;
+import com.amazonaws.mobileconnectors.cognito.DefaultSyncCallback;
+import com.amazonaws.regions.Regions;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class GamesList extends AppCompatActivity {
@@ -20,6 +27,19 @@ public class GamesList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games_list);
 
+        CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+                getApplicationContext(),
+                "us-east-1:cc527833-ca73-4865-84e5-fa070cad9847", // Identity Pool ID
+                Regions.US_EAST_1 // Region
+
+        );
+
+        // Initialize the Cognito Sync client
+        CognitoSyncManager syncClient = new CognitoSyncManager(
+                getApplicationContext(),
+                Regions.US_EAST_1, // Region
+                credentialsProvider);
+
         theGamesList = new ArrayList<>();
 
         theGamesList = (ArrayList<Game>)getIntent().getSerializableExtra("theGameList");
@@ -28,12 +48,23 @@ public class GamesList extends AppCompatActivity {
         int index = 0;
         int max = theGamesList.size();
 
+
         while(max > 0)
         {
-            Game toAdd = theGamesList.get(index);
+            final Game toAdd = theGamesList.get(index);
             index++;
             max--;
-            theReplacing.append(toAdd.getTitle());
+            // Create a record in a dataset and synchronize with the server
+            Dataset dataset = syncClient.openOrCreateDataset("myDataset");
+            dataset.put("myKey", "myValue");
+            dataset.synchronize(new DefaultSyncCallback() {
+                @Override
+                public void onSuccess(Dataset dataset, List newRecords) {
+                    //Your handler code here
+                    dataset.put("Title1", toAdd.getTitle());
+
+                }
+            });
         }
 
 

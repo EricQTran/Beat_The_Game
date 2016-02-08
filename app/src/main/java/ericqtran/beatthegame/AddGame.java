@@ -14,7 +14,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobileconnectors.cognito.CognitoSyncManager;
+import com.amazonaws.mobileconnectors.cognito.Dataset;
+import com.amazonaws.mobileconnectors.cognito.DefaultSyncCallback;
+import com.amazonaws.regions.Regions;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class AddGame extends AppCompatActivity {
@@ -33,6 +40,12 @@ public class AddGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_game);
+
+
+
+
+
+
 
         //initialize global variables
         addGameButt = (Button) findViewById(R.id.addGameButton);
